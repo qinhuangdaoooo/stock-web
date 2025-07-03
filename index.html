@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artificial intelligence prediction system</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"> </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="./lib/css/swiper.min.css">
+  <script src="./lib/js/swiper.min.js"> </script>
+  <link rel="stylesheet" href="./lib/css/animate.min.css" />
+  <script src="./lib/js/jquery.min.js"></script>
   <!-- <script src="./src/data-code.js"></script> -->
   <!-- Meta Pixel Code -->
   <script>
@@ -560,33 +560,33 @@
     <div class="container">
       <div class="title1">AIインテリジェント予測システム</div>
       <div class="item gifBox">
-        <img class="gifBg" id="local-res" src="phone/img_01.jpg" />
+        <img class="gifBg" id="local-res" src="./img/phone/img_01.jpg" />
       </div>
       <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);box-sizing: border-box;">
-        <img id="local-res" style="width: 100vw;" src="phone/person.png">
+        <img id="local-res" style="width: 100vw;" src="./img/phone/person.png">
       </div>
-      <img id="local-res" class="circle" src="phone/circle.png" alt="">
+      <img id="local-res" class="circle" src="./img/phone/circle.png" alt="">
       <!-- 轮播图 -->
       <div class="swiper-container swiper-container-horizontal">
         <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
           <div class="swiper-slide swiper-slide-active" id="local-res-bg"
-            style="background: url(phone/scroll_item_1.png) no-repeat;background-size: 100% 100%;"></div>
+            style="background: url(./img/phone/scroll_item_1.png) no-repeat;background-size: 100% 100%;"></div>
           <div class="swiper-slide swiper-slide-next" id="local-res-bg"
-            style="background: url(phone/scroll_item_2.png) no-repeat;background-size: 100% 100%;"></div>
+            style="background: url(./img/phone/scroll_item_2.png) no-repeat;background-size: 100% 100%;"></div>
           <div class="swiper-slide" id="local-res-bg"
-            style="background: url(phone/scroll_item_3.png) no-repeat;background-size: 100% 100%;"></div>
+            style="background: url(./img/phone/scroll_item_3.png) no-repeat;background-size: 100% 100%;"></div>
           <div class="swiper-slide" id="local-res-bg"
-            style="background: url(phone/scroll_item_4.png) no-repeat;background-size: 100% 100%;"></div>
+            style="background: url(./img/phone/scroll_item_4.png) no-repeat;background-size: 100% 100%;"></div>
         </div>
       </div>
       <!-- 打字机 -->
       <div class="item imgAutoInput animate__animated animate__fadeIn">
-        <img id="local-res" src="input_bg.png" />
+        <img id="local-res" src="./img/input_bg.png" />
         <textarea type="text" id="input_auto_field" readonly="readonly" disabled="disabled"></textarea>
       </div>
       <!-- 输入框 -->
       <div class="item imgInput">
-        <img id="local-res" src="phone/btn_2.png" />
+        <img id="local-res" src="./img/phone/btn_2.png" />
         <textarea type="text" id="input_field" name="stockcode1" placeholder="アップルなどの株式を入力"></textarea>
         <div class="recommend" id="instr">
           <div style="width: 100%;height: 40vw;background: #5E8594;opacity: 0.9;position: fixed;border-radius: 1vw;">
@@ -629,13 +629,13 @@
       </div>
       <!-- 提交按钮 -->
       <div class="item btn animate__animated" id="fiexd-btn">
-        <img id="local-res" src="btn.png" />
+        <img id="local-res" src="./img/btn.png" />
         <p id="btn_top" onclick="goTo()">そくじぶんせき</p>
       </div>
       <!-- 联系我们按钮 -->
       <div style="position: fixed;width: 72%;left: 50%;transform: translate(-50%, 0);bottom: 3%;z-index: 4;">
         <div class="item btn-float animate__animated animate__zoomIn" id="float-btn">
-          <img id="local-res" src="btn.png" />
+          <img id="local-res" src="./img/btn.png" />
           <p id="btn_bottom" onclick="goTo()">連絡先</p>
         </div>
       </div>
@@ -644,33 +644,33 @@
     <!-- 股票图 -->
     <div class="stockBox">
       <p class="title3">AI実戦成績</p>
-      <img id="local-res" class="stockBg" src="phone/secondPage.png" alt="">
-      <img class="stock stock1" id="local-res" src="phone/stock1.png" alt="">
-      <img class="stock stock2" id="local-res" src="phone/stock2.png" alt="">
-      <img class="stock stock3" id="local-res" src="phone/stock3.png" alt="">
-      <img class="stock stock4" id="local-res" src="phone/stock4.png" alt="">
+      <img id="local-res" class="stockBg" src="./img/phone/secondPage.png" alt="">
+      <img class="stock stock1" id="local-res" src="./img/phone/stock1.png" alt="">
+      <img class="stock stock2" id="local-res" src="./img/phone/stock2.png" alt="">
+      <img class="stock stock3" id="local-res" src="./img/phone/stock3.png" alt="">
+      <img class="stock stock4" id="local-res" src="./img/phone/stock4.png" alt="">
     </div>
     <!-- 人物对话 -->
     <div class="conversationBox">
-      <img id="local-res" class="thirdPage" src="phone/thirdPage.png" alt="">
-      <img id="local-res" class="person2 animate__animated" src="phone/person2.png" alt="">
-      <img id="local-res" class="msg1 animate__animated" src="phone/conversation1.png" alt="">
-      <img id="local-res" class="msg2 animate__animated" src="phone/conversation2.png" alt="">
+      <img id="local-res" class="thirdPage" src="./img/phone/thirdPage.png" alt="">
+      <img id="local-res" class="person2 animate__animated" src="./img/phone/person2.png" alt="">
+      <img id="local-res" class="msg1 animate__animated" src="./img/phone/conversation1.png" alt="">
+      <img id="local-res" class="msg2 animate__animated" src="./img/phone/conversation2.png" alt="">
 
     </div>
     <!-- vs对话 -->
     <div class="vsBox">
       <p class="title4">AIを使う人工<br />知能のメリット</p>
-      <img id="local-res" class="forthPage" src="phone/forthPage.png" alt="">
-      <img id="local-res" class="vs1 animate__animated" src="phone/vs1.png" alt="">
-      <img id="local-res" class="vs2 animate__animated" src="phone/vs2.png" alt="">
-      <img id="local-res" class="vsLogo vsLogo1 animate__animated" src="phone/vs.png" alt="">
-      <img id="local-res" class="vsLogo vsLogo2  animate__animated" src="phone/vs.png" alt="">
-      <img id="local-res" class="vsLogo vsLogo3  animate__animated" src="phone/vs.png" alt="">
+      <img id="local-res" class="forthPage" src="./img/phone/forthPage.png" alt="">
+      <img id="local-res" class="vs1 animate__animated" src="./img/phone/vs1.png" alt="">
+      <img id="local-res" class="vs2 animate__animated" src="./img/phone/vs2.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo1 animate__animated" src="./img/phone/vs.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo2  animate__animated" src="./img/phone/vs.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo3  animate__animated" src="./img/phone/vs.png" alt="">
     </div>
     <!-- 最后一页 -->
     <div class="container">
-      <div class="item"><img id="local-res" src="phone/img_06.jpg" /></div>
+      <div class="item"><img id="local-res" src="./img/phone/img_06.jpg" /></div>
       <p class="title5">あなたの注目株を予測す<br />るこれはすべて無料です</p>
       <textarea type="text" id="input_bottom_field" placeholder="アップルなどの株式を入力"></textarea>
       <div class="btn-text-bottom"><a id="btn-text-bottom" class="scale" onclick="goTo()">そくじぶんせき</a></div>
@@ -681,7 +681,6 @@
 
   <script defer>
     // 定义路径变量
-    let path = "./img/";
     let path2 = "./src/";
 
     // let path = "{{ .resPath }}" + "/img/";
@@ -689,13 +688,13 @@
 
     let imgElements = document.querySelectorAll('#local-res');
     imgElements.forEach(function (imgElement) {
-      imgElement.src = path + imgElement.getAttribute("src");
+      imgElement.src = imgElement.getAttribute("src");
     });
 
     let imgBgElements = document.querySelectorAll('#local-res-bg');
     imgBgElements.forEach(function (imgElement) {
       let url = imgElement.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
-      imgElement.style.backgroundImage = `url(${path}${url})`
+      imgElement.style.backgroundImage = `url(${url})`
     });
 
     let script2 = document.createElement("script");
