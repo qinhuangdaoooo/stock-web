@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artificial intelligence prediction system</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"> </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <!-- <script src="./src/data-code.js"></script> -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ .pixelCode }}');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id={{ .pixelCode }}&ev=PageView&noscript=1"></noscript>
+  <!-- End Meta Pixel Code -->
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .googleCode }}"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .googleAd1 }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '{{ .googleCode }}');
+    gtag('config', '{{ .googleAd1 }}');
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Calibri !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 移动端样式 */
+    #mobile-layout {}
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+
+    .container {
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* mobile show */
+
+
+    .imgAutoInput {
+      position: absolute;
+      width: 86%;
+      height: 14%;
+      left: 7%;
+      top: 55%;
+    }
+
+    .imgInput {
+      position: absolute;
+      width: 72%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 70%;
+      z-index: 2;
+    }
+
+    #input_field {
+      position: absolute;
+      width: 80%;
+      height: 56%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 22%;
+      font-size: 5vw;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      color: rgb(149, 255, 255);
+      outline: none;
+      line-height: 9vw;
+    }
+
+    #input_field::placeholder {
+      font-size: 4vw;
+      color: rgb(149, 255, 255);
+      line-height: 8vw;
+    }
+
+    #input_auto_field {
+      position: absolute;
+      width: 85%;
+      left: 7%;
+      top: 18%;
+      height: 74%;
+      font-size: 3vw !important;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      line-height: 3.5vw;
+      color: rgb(149, 255, 255);
+
+    }
+
+    #input_auto_field::placeholder {
+      color: rgb(149, 255, 255);
+
+    }
+
+    #fiexd-btn {
+      position: absolute;
+      width: 72%;
+      left: 14%;
+      top: 79%;
+      display: none;
+    }
+
+    #fiexd-btn p {
+      position: absolute;
+      width: 74%;
+      height: auto;
+      text-align: center;
+      font-size: 5vw;
+      margin: auto;
+      padding: auto;
+      top: 50%;
+      right: 5%;
+      transform: translate(0, -50%);
+      color: #b1f2f6;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      text-indent: -10vw;
+    }
+
+    .text_indent {
+      text-indent: 0 !important;
+    }
+
+    .btn-float {
+      max-width: 528px;
+      margin: 0 auto;
+      z-index: 5;
+    }
+
+    .btn-float a {
+      position: absolute;
+      width: auto;
+      height: auto;
+      text-align: center;
+      margin: auto;
+      padding: auto;
+      top: 18%;
+      left: 35%;
+      color: #b1f2f6;
+    }
+
+    .pageview-container {
+      position: absolute;
+      width: 90%;
+      right: 0;
+      top: 10%;
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+
+    .page {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .page img {
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+    }
+
+
+    #input_bottom_field {
+      position: absolute;
+      width: 80%;
+      height: 6%;
+      left: 49%;
+      transform: translate(-50%, 0);
+      top: 41%;
+      font-size: 8vw;
+      font-weight: bold;
+      line-height: 13vw;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      color: rgb(149, 255, 255);
+      outline: none;
+    }
+
+    #input_bottom_field::placeholder {
+      color: #b1f2f6;
+      font-size: 4vw;
+    }
+
+    #btn-text-bottom {
+      width: 90%;
+      height: 100%;
+      text-align: center;
+      font-size: 5vw;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      color: #333333;
+      font-weight: bold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-text-bottom {
+      position: absolute;
+      width: 84%;
+      height: 8%;
+      left: 53.5%;
+      top: 53.2%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    #input_bottom_auto_field {
+      position: absolute;
+      width: 80%;
+      left: 10%;
+      height: 38%;
+      top: 60%;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      line-height: 4.5vw;
+      color: rgb(149, 255, 255);
+    }
+
+    #input_bottom_auto_field::placeholder {
+      color: rgb(149, 255, 255);
+      font-size: 3.5vw;
+    }
+
+
+
+    .swiper-wrapper .swiper-slide {
+      width: 63vw;
+      height: 30.5vw;
+    }
+
+    .swiper-container {
+      width: 93vw;
+      position: absolute;
+      top: 15%;
+      right: 0;
+    }
+
+    #float-btn {
+      display: none;
+    }
+
+    #float-btn p {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      text-align: center;
+      font-size: 5vw;
+      margin: auto;
+      padding: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #b1f2f6;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .animate__pulse {
+      animation-iteration-count: infinite;
+      /* transform: translate(-50%,-50%)!important; */
+    }
+
+    .title1 {
+      position: absolute;
+      width: 100%;
+      top: 1%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      font-size: 6vw;
+      color: #b1f2f6;
+      margin-top: 4vw;
+      text-align: center;
+    }
+
+    .scale {
+      animation: scale 1s ease infinite;
+    }
+
+    @keyframes scale {
+      0% {
+        transform: scale(1.0);
+      }
+
+      25% {
+        transform: scale(1.2);
+      }
+
+      50% {
+        transform: scale(1.0);
+      }
+
+      100% {
+        transform: scale(1.0);
+      }
+    }
+
+    .small_ani {
+      transform: scale(0.9);
+    }
+
+    .circle {
+      width: 90vw;
+      position: absolute;
+      top: 34%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      animation: circleRotate 10s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes circleRotate {
+      0% {
+        transform: translate(-50%, 0) rotate(0);
+      }
+
+      100% {
+        transform: translate(-50%, 0) rotate(360deg);
+
+      }
+    }
+
+    .stockBox {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stockBg {
+      width: 100vw;
+      display: block;
+    }
+
+    .stockBox .stock {
+      position: absolute;
+      width: 80vw;
+      transform: translate(-50%, 0);
+      transition: ease-out;
+      transition-duration: 0.4s;
+
+    }
+
+    .stock1 {
+      top: 13%;
+      left: -50%;
+    }
+
+    .stock2 {
+
+      top: 34%;
+      left: 150%;
+    }
+
+    .stock3 {
+      top: 55%;
+      left: -50%;
+    }
+
+    .stock4 {
+      top: 76%;
+      left: 150%;
+    }
+
+    .conversationBox {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conversationBox .thirdPage {
+      width: 100vw;
+      display: block;
+    }
+
+    .person2 {
+      width: 60vw;
+      position: absolute;
+      left: 0;
+      display: none;
+      bottom: 0;
+    }
+
+    .msg1 {
+      width: 57vw;
+      position: absolute;
+      top: 8%;
+      right: 2vw;
+      display: none;
+    }
+
+    .msg2 {
+      width: 58vw;
+      position: absolute;
+      top: 46%;
+      right: 2vw;
+      display: none;
+    }
+
+    .vsBox {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .forthPage {
+      width: 100vw;
+      display: block;
+      overflow: hidden;
+    }
+
+    .title3 {
+      width: 100%;
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: #b1f5f9;
+      text-align: center;
+      font-size: 10vw;
+      line-height: 10vw;
+    }
+
+    .title4 {
+      width: 100%;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: #b1f5f9;
+      text-align: center;
+      font-size: 10vw;
+      line-height: 10vw;
+    }
+
+    .title5 {
+      width: 100%;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: #b1f5f9;
+      text-align: center;
+      font-size: 6vw;
+      line-height: 10vw;
+    }
+
+    .vs1 {
+      width: 59vw;
+      position: absolute;
+      top: 25%;
+      left: 0%;
+      z-index: 2;
+      display: none;
+    }
+
+    .vs2 {
+      width: 44.5vw;
+      position: absolute;
+      top: 28.6%;
+      right: 4%;
+      display: none;
+    }
+
+    .vsLogo {
+      width: 7vw;
+      position: absolute;
+      z-index: 3;
+      display: none;
+    }
+
+    .vsLogo1 {
+      top: 36%;
+      left: 50.7%;
+      animation-delay: 1s;
+    }
+
+    .vsLogo2 {
+      top: 55%;
+      left: 50.7%;
+      animation-delay: 1.5s;
+    }
+
+    .vsLogo3 {
+      top: 73.4%;
+      left: 50.7%;
+      animation-delay: 2s;
+    }
+
+    /* .animate__zoomIn{
+      animation-delay: 1s;
+    } */
+    .recommend {
+      width: 100%;
+      font-size: 4vw;
+      position: absolute;
+      top: 78%;
+      left: 0;
+      display: none;
+      height: 40vw;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="mobile-layout">
+    <!-- 移动端布局的内容 -->
+    <div class="container">
+      <div class="title1">AIインテリジェント予測システム</div>
+      <div class="item gifBox">
+        <img class="gifBg" id="local-res" src="phone/img_01.jpg" />
+      </div>
+      <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);box-sizing: border-box;">
+        <img id="local-res" style="width: 100vw;" src="phone/person.png">
+      </div>
+      <img id="local-res" class="circle" src="phone/circle.png" alt="">
+      <!-- 轮播图 -->
+      <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+          <div class="swiper-slide swiper-slide-active" id="local-res-bg"
+            style="background: url(phone/scroll_item_1.png) no-repeat;background-size: 100% 100%;"></div>
+          <div class="swiper-slide swiper-slide-next" id="local-res-bg"
+            style="background: url(phone/scroll_item_2.png) no-repeat;background-size: 100% 100%;"></div>
+          <div class="swiper-slide" id="local-res-bg"
+            style="background: url(phone/scroll_item_3.png) no-repeat;background-size: 100% 100%;"></div>
+          <div class="swiper-slide" id="local-res-bg"
+            style="background: url(phone/scroll_item_4.png) no-repeat;background-size: 100% 100%;"></div>
+        </div>
+      </div>
+      <!-- 打字机 -->
+      <div class="item imgAutoInput animate__animated animate__fadeIn">
+        <img id="local-res" src="input_bg.png" />
+        <textarea type="text" id="input_auto_field" readonly="readonly" disabled="disabled"></textarea>
+      </div>
+      <!-- 输入框 -->
+      <div class="item imgInput">
+        <img id="local-res" src="phone/btn_2.png" />
+        <textarea type="text" id="input_field" name="stockcode1" placeholder="アップルなどの株式を入力"></textarea>
+        <div class="recommend" id="instr">
+          <div style="width: 100%;height: 40vw;background: #5E8594;opacity: 0.9;position: fixed;border-radius: 1vw;">
+          </div>
+          <table style="width: 100%;height: auto;color: #B1F5F9;position: absolute;">
+            <thead>
+              <tr style="text-align:center;">
+                <td>stock code</td>
+                <td>stock name</td>
+              </tr>
+            </thead>
+            <tbody id="codelist">
+              <tr id="WBA" data-code="WBA" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span>BA</td>
+                <td>WALGREENS BOOTS ALLIANCE INC</td>
+              </tr>
+              <tr id="WB" data-code="WB" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span>B</td>
+                <td>WEIBO CORP-SPON ADR</td>
+              </tr>
+              <tr id="WAT" data-code="WAT" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span>AT</td>
+                <td>WATERS CORP</td>
+              </tr>
+              <tr id="WAL" data-code="WAL" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span>AL</td>
+                <td>WESTERN ALLIANCE BANCORP</td>
+              </tr>
+              <tr id="WAB" data-code="WAB" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span>AB</td>
+                <td>WABTEC CORP</td>
+              </tr>
+              <tr id="W" data-code="W" class="gets" style="cursor:pointer;text-align:center;">
+                <td><span style="color: red;">W</span></td>
+                <td>WAYFAIR INC- CLASS A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- 提交按钮 -->
+      <div class="item btn animate__animated" id="fiexd-btn">
+        <img id="local-res" src="btn.png" />
+        <p id="btn_top" onclick="goTo()">そくじぶんせき</p>
+      </div>
+      <!-- 联系我们按钮 -->
+      <div style="position: fixed;width: 72%;left: 50%;transform: translate(-50%, 0);bottom: 3%;z-index: 4;">
+        <div class="item btn-float animate__animated animate__zoomIn" id="float-btn">
+          <img id="local-res" src="btn.png" />
+          <p id="btn_bottom" onclick="goTo()">連絡先</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- 股票图 -->
+    <div class="stockBox">
+      <p class="title3">AI実戦成績</p>
+      <img id="local-res" class="stockBg" src="phone/secondPage.png" alt="">
+      <img class="stock stock1" id="local-res" src="phone/stock1.png" alt="">
+      <img class="stock stock2" id="local-res" src="phone/stock2.png" alt="">
+      <img class="stock stock3" id="local-res" src="phone/stock3.png" alt="">
+      <img class="stock stock4" id="local-res" src="phone/stock4.png" alt="">
+    </div>
+    <!-- 人物对话 -->
+    <div class="conversationBox">
+      <img id="local-res" class="thirdPage" src="phone/thirdPage.png" alt="">
+      <img id="local-res" class="person2 animate__animated" src="phone/person2.png" alt="">
+      <img id="local-res" class="msg1 animate__animated" src="phone/conversation1.png" alt="">
+      <img id="local-res" class="msg2 animate__animated" src="phone/conversation2.png" alt="">
+
+    </div>
+    <!-- vs对话 -->
+    <div class="vsBox">
+      <p class="title4">AIを使う人工<br />知能のメリット</p>
+      <img id="local-res" class="forthPage" src="phone/forthPage.png" alt="">
+      <img id="local-res" class="vs1 animate__animated" src="phone/vs1.png" alt="">
+      <img id="local-res" class="vs2 animate__animated" src="phone/vs2.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo1 animate__animated" src="phone/vs.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo2  animate__animated" src="phone/vs.png" alt="">
+      <img id="local-res" class="vsLogo vsLogo3  animate__animated" src="phone/vs.png" alt="">
+    </div>
+    <!-- 最后一页 -->
+    <div class="container">
+      <div class="item"><img id="local-res" src="phone/img_06.jpg" /></div>
+      <p class="title5">あなたの注目株を予測す<br />るこれはすべて無料です</p>
+      <textarea type="text" id="input_bottom_field" placeholder="アップルなどの株式を入力"></textarea>
+      <div class="btn-text-bottom"><a id="btn-text-bottom" class="scale" onclick="goTo()">そくじぶんせき</a></div>
+      <textarea type="text" id="input_bottom_auto_field" readonly="readonly" disabled="disabled"></textarea>
+    </div>
+  </div>
+
+
+  <script defer>
+    // 定义路径变量
+    let path = "./img/";
+    let path2 = "./src/";
+
+    // let path = "{{ .resPath }}" + "/img/";
+    // let path2 = "{{ .resPath }}" + "/src/";
+
+    let imgElements = document.querySelectorAll('#local-res');
+    imgElements.forEach(function (imgElement) {
+      imgElement.src = path + imgElement.getAttribute("src");
+    });
+
+    let imgBgElements = document.querySelectorAll('#local-res-bg');
+    imgBgElements.forEach(function (imgElement) {
+      let url = imgElement.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+      imgElement.style.backgroundImage = `url(${path}${url})`
+    });
+
+    let script2 = document.createElement("script");
+    script2.src = path2 + "data-code.js";
+    document.body.appendChild(script2);
+    script2.onload = () => {
+      let script = document.createElement("script");
+      script.src = path2 + "index.js";
+      document.body.appendChild(script);
+    }
+  </script>
+
+
+  <script>
+    function goTo() {
+      let url = "http://{{ .clickUrl }}"
+      window.location.href = url;
+      fbq('track', 'Contact');
+
+      gtag('event', 'conversion', {
+        'send_to': '{{ .googleAd1 }}/{{ .googleAd2 }}',
+      });
+    }
+
+
+    //打字机效果
+    var textarea = document.getElementById('input_auto_field');
+    var textToType = "こんにちは、私はAIロボット-SOPHIAです。私はビッグデータと世界経済の方向に基づいて株式の将来の下落を予測することができます。あなたの株式会社の変動を24時間追跡し、あなたの株式を入力して試用することもできます。";
+    var textBottom = "この株は現在正常な調整に属しており、上昇傾向は依然としてよく維持されており、下にはいくつかの強力な支えがあり、現在の市場では株価の継続的な下落は難しいように見えます。この株はすでに上昇の兆しをしっかりと準備しており、いつでも突破して上昇する可能性があり、まだ大きな上昇空間があり、安心してしっかり持っていれば上昇することができます。見つけたらすぐにお知らせします。"
+    var index = 0;
+    var typingInterval = setInterval(function () {
+      textarea.placeholder = textToType.slice(0, index);
+      index++;
+
+      if (index > textToType.length) {
+        clearInterval(typingInterval);
+      }
+    }, 50);
+
+    var inputField = document.getElementById('input_field');
+
+    var fiexdBtnA = document.getElementById('fiexd-btn').querySelector('p');
+
+    inputField.addEventListener('input', function () {
+      let inputValue = inputField.value;
+      fiexdBtnA.innerText = 'Get data:' + inputValue;
+      if (inputValue.length > 0) {
+        $('#btn_top').addClass('text_indent')
+      } else {
+        $('#btn_top').removeClass('text_indent')
+      }
+    });
+
+
+    var inputFieldBottom = document.getElementById('input_bottom_field');
+    var fiexdBtnBottom = document.getElementById('btn-text-bottom');
+
+    inputFieldBottom.addEventListener('input', function () {
+      let inputValue = inputFieldBottom.value;
+      fiexdBtnBottom.innerText = 'Get data:' + inputValue;
+      if (inputValue.length == 0) {
+        fiexdBtnBottom.innerText = 'Get free AI prediction data'
+      }
+    });
+
+    var isStartPrint = false;
+
+    window.addEventListener('scroll', function () {
+      var scrollPosition = window.pageYOffset;
+      var windowHeight = window.innerHeight;
+      var bodyHeight = document.body.clientHeight;
+      var scrollPercentage = (scrollPosition / (bodyHeight - windowHeight)) * 100;
+      // 检查滚动位置是否在20%到80%之间
+      if (scrollPercentage >= 15 && scrollPercentage <= 80) {
+        remove_btnani($('#fiexd-btn'));
+        add_btnani($('#float-btn'));
+        document.getElementById('float-btn').style.display = 'block';
+        document.getElementById('fiexd-btn').style.display = 'none';
+      } else {
+        remove_btnani($('#float-btn'));
+        document.getElementById('float-btn').style.display = 'none';
+        document.getElementById('fiexd-btn').style.display = 'block';
+        add_btnani($('#fiexd-btn'));
+
+      }
+
+      let index2 = 0
+      if (scrollPercentage > 95 && !isStartPrint) {
+
+        isStartPrint = true
+        var bottomArea = document.getElementById('input_bottom_auto_field');
+        var typingInterval2 = setInterval(function () {
+          bottomArea.placeholder = textBottom.slice(0, index2);
+          index2++;
+
+          if (index2 > textBottom.length) {
+            clearInterval(typingInterval2);
+          }
+        }, 50);
+      }
+      if (scrollPercentage >= 6 && scrollPercentage < 12) {// 股票图片动画
+        $('.stock1').css('left', '50%');
+      } else if (scrollPercentage >= 12 && scrollPercentage < 18) {
+        $('.stock2').css('left', '50%');
+      } else if (scrollPercentage >= 18 && scrollPercentage < 24) {
+        $('.stock3').css('left', '50%');
+      } else if (scrollPercentage >= 24 && scrollPercentage < 36) {
+        $('.stock4').css('left', '50%');
+      } else if (scrollPercentage >= 36 && scrollPercentage < 42) {//人物对话动画
+        $('.msg1').css('display', 'block').addClass('animate__rotateInDownLeft');
+      } else if (scrollPercentage >= 42 && scrollPercentage < 48) {
+        $('.msg2').css('display', 'block').addClass('animate__rotateInDownLeft');
+      } else if (scrollPercentage >= 48 && scrollPercentage < 55) {
+        $('.person2').css('display', 'block').addClass('animate__lightSpeedInLeft');
+      } else if (scrollPercentage >= 62 && scrollPercentage < 66) {//vs模块动画
+        $('.vs1').css('display', 'block').addClass('animate__fadeInTopLeft');
+      } else if (scrollPercentage >= 66 && scrollPercentage < 75) {//vs模块动画
+        $('.vs2').css('display', 'block').addClass('animate__fadeInBottomRight');
+        $('.vsLogo').css('display', 'block').addClass('animate__zoomIn');
+      }
+
+
+    });
+    window.onload = function () {
+      // 轮播图
+      var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 'auto',
+        paginationClickable: true,
+        spaceBetween: 0,
+        autoplay: 2000,
+        autoplayDisableOnInteraction: false
+      });
+      // 动态替换gif背景图
+      let img = new Image();
+      img.src = './img/phone/bggif.gif';
+      img.onload = () => {
+        $('.gifBox').empty().append(img)
+      }
+      addClickAni($('#float-btn'));
+      addClickAni($('#fiexd-btn'));
+      addClickAni($('#btn-text-bottom'));
+    }
+    setTimeout(() => {
+      $('#fiexd-btn').css('display', 'block').addClass('animate__backInLeft');
+      add_btnani($('#fiexd-btn'));
+    }, 500)
+
+    var timer1;
+    // 增加缩放动画
+    function add_btnani(ele) {
+      clearTimeout(timer1);
+      timer1 = setTimeout(() => {
+        ele.addClass('scale')
+      }, 1500)
+    }
+    // 移除缩放动画
+    function remove_btnani(ele) {
+      clearTimeout(timer1);
+      ele.removeClass('scale')
+    }
+
+    // 添加点击动画
+    function addClickAni(ele) {
+      ele.on('touchstart', () => {
+        ele.removeClass('animate__animated scale').addClass('small_ani');
+      }).on('touchend', () => {
+        ele.removeClass('small_ani').addClass('animate__animated scale');
+      })
+    }
+  </script>
+</body>
+
+</html>
